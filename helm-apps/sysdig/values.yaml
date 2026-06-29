@@ -1,34 +1,46 @@
-global:
-  clusterConfig:
-    name: argo-k8s
-  sysdig:
-    accessKeySecret: sysdig-credentials
-    region: us4
+cluster_config:
+  name: argo-k8s
 
-agent:
-  enabled: true
-  image:
-    tag: latest
-  slim:
+sysdig_endpoint:
+  region: us4
+  access_key_existing_secret: sysdig-credentials  # ← Secret 이름 참조
+
+features:
+  kubernetes_metadata:
     enabled: true
-  ebpf:
-    enabled: true
-  resources:
-    requests:
-      cpu: 100m
-      memory: 256Mi
-    limits:
-      cpu: 500m
-      memory: 1024Mi
+  posture:
+    host_posture:
+      enabled: true
+    cluster_posture:
+      enabled: true
+  vulnerability_management:
+    host_vulnerability_management:
+      enabled: true
+    container_vulnerability_management:
+      enabled: true
+    in_use:
+      enabled: true
+  detections:
+    drift_control:
+      enabled: true
+    malware_control:
+      enabled: true
+    file_integrity_monitoring:
+      enabled: true
+    ml_policies:
+      enabled: true
+    kubernetes_audit:
+      enabled: true
+  investigations:
+    activity_audit:
+      enabled: true
+    live_logs:
+      enabled: true
+    captures:
+      enabled: true
+  respond:
+    response_actions:
+      enabled: true
 
-nodeAnalyzer:
-  enabled: true
-  nodeAnalyzer:
-    benchmarkRunner:
-      enabled: false
-
-admissionController:
-  enabled: false
-
-kspmCollector:
-  enabled: false
+host:
+  driver: legacy_ebpf

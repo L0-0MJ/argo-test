@@ -7,8 +7,8 @@ spec:
   project: default
   sources:
     - repoURL: https://charts.sysdig.com
-      chart: sysdig-deploy
-      targetRevision: 1.114.0
+      chart: shield
+      targetRevision: "*"
       helm:
         valueFiles:
           - $values/helm-apps/sysdig/values.yaml
