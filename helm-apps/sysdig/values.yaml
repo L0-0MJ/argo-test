@@ -1,36 +1,34 @@
-sysdig-deploy:
-  global:
-    clusterConfig:
-      name: argo-k8s
-    sysdig:
-      accessKeySecret: sysdig-credentials
-      region: us4
+global:
+  clusterConfig:
+    name: argo-k8s
+  sysdig:
+    accessKeySecret: sysdig-credentials
+    region: us4
 
-
-  agent:
+agent:
+  enabled: true
+  image:
+    tag: latest
+  slim:
     enabled: true
-    image:
-      tag: latest
-    slim:
-      enabled: true
-    ebpf:
-      enabled: true
-    resources:
-      requests:
-        cpu: 100m
-        memory: 256Mi
-      limits:
-        cpu: 500m
-        memory: 1024Mi
+  ebpf:
+    enabled: true
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      cpu: 500m
+      memory: 1024Mi
 
+nodeAnalyzer:
+  enabled: true
   nodeAnalyzer:
-    enabled: true
-    nodeAnalyzer:
-      benchmarkRunner:
-        enabled: false
+    benchmarkRunner:
+      enabled: false
 
-  admissionController:
-    enabled: false
+admissionController:
+  enabled: false
 
-  kspmCollector:
-    enabled: false
+kspmCollector:
+  enabled: false
