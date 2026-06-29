@@ -8,7 +8,7 @@ spec:
   sources:
     - repoURL: https://charts.sysdig.com
       chart: sysdig-deploy
-      targetRevision: 1.70.2
+      targetRevision: 1.114.0
       helm:
         valueFiles:
           - $values/helm-apps/sysdig/values.yaml
